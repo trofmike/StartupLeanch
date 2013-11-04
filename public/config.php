@@ -1,7 +1,7 @@
 <?
 define("DBHOST","localhost");
-define("DBUSER","root");
-define("DBPASS","1");
+define("DBUSER","leanch");
+define("DBPASS","3oddM8zz");
 define("DBNAME","leanch");
 
 define("ROOTLOGIN","admin");
