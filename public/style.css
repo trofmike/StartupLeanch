@@ -37,7 +37,7 @@ BODY {
 
 .header P {
  color: #656565;
- font-size: 14px;
+ font-size: 12pt;
 }
 
 TABLE.dateselector {
@@ -136,6 +136,7 @@ A.btn-blue {
   color: #ffffff;
   background-color: #0070B0;
   border: none;
+  border-radius: 2px;
 }
 
 .btn-blue:hover,
@@ -151,4 +152,68 @@ A.btn-blue {
 .btn-blue.active,
 .open .dropdown-toggle.btn-blue {
   background-image: none;
+}
+
+.btn-pink {
+  color: #ffffff;
+  background-color: #fe3c5c;
+  border: none;
+  border-radius: 2px;
+}
+
+.btn-pink:hover,
+.btn-pink:focus,
+.btn-pink:active,
+.btn-pink.active,
+.open .dropdown-toggle.btn-pink {
+  color: #ffffff;
+  background-color: #fe3c5c;
+  border: none;
+}
+.btn-pink:active,
+.btn-pink.active,
+.open .dropdown-toggle.btn-pink {
+  background-image: none;
+}
+
+INPUT.btn-green {
+  color: #ffffff;
+  background-color: #25b13c;
+  border: none;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+.btn-green:hover,
+.btn-green:focus,
+.btn-green:active,
+.btn-green.active,
+.open .dropdown-toggle.btn-green {
+  color: #ffffff;
+  background-color: #25b13c;
+  border: none;
+}
+
+.btn-green:active,
+.btn-green.active,
+.open .dropdown-toggle.btn-green {
+  background-image: none;
+}
+
+
+TD.requesthint {
+ padding-left: 20px;
+ font-size: 12px;
+ color: #666666;
+}
+
+DIV.imgupload {
+ float: left;
+}
+
+DIV.imgupload  IMG{
+ float: left;
+ margin-top: 10px;
+ margin-left: 4px;
+ display: none;
 }
