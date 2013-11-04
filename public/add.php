@@ -19,6 +19,7 @@ $rcode = md5((mt_rand() / mt_getrandmax())."rlkz;kjlkjn-");
     <script src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="/js/jquery.ocupload-1.1.2.js"></script>
+	<script src="/js/jquery.validate_ru.js"></script>
 </head>
 <body>
 <div class="header">
@@ -57,13 +58,31 @@ $rcode = md5((mt_rand() / mt_getrandmax())."rlkz;kjlkjn-");
 					<div class="imgupload"><img src="/img2/ok.png" id="uploadok"></div>
 					<script>
 			
+				$(function() {
+
 				$('#uploadlogo').upload({action: '/ajax_upload_leanch.php?code=<?=$rcode?>',  onComplete: function(data) {
 					$('#uploadok').show();
 				}
+				
 				});		
-
-				$(function() {
-					$('#reqform').validate();
+				
+				function checkForm()
+					{
+						if($('#reqform').find('input[name="name"]').val()=='')
+							{
+							$('#reqform').find('input[name="name"]').addClass('error');
+							return false;
+							}
+							
+						if($('#reqform').find('input[name="email"]').val()=='')
+							{
+							$('#reqform').find('input[name="email"]').addClass('error');
+							return false;
+							}
+							
+						return true;
+					}
+				
 					});
 				
 					</script>
@@ -73,7 +92,7 @@ $rcode = md5((mt_rand() / mt_getrandmax())."rlkz;kjlkjn-");
 					<label>Описание проекта</label>
 					<textarea rows=5 class="form-control" name=description></textarea>
 					</td><td valign=top class="requesthint">Опишите как можно подробнее ваш проект (описание будет опубликовано).</td></tr>
-					<tr><td style="padding-top: 20px;"><input type=submit value="Отправить заявку" class="btn btn-green" style="width: 100%;"></td><td></td></tr></table>
+					<tr><td style="padding-top: 20px;"><input type=submit onclick="checkForm();" value="Отправить заявку" class="btn btn-green" style="width: 100%;"></td><td></td></tr></table>
 				</form>
 			</div>
 		</div>

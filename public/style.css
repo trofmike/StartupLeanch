@@ -217,3 +217,7 @@ DIV.imgupload  IMG{
  margin-left: 4px;
  display: none;
 }
+
+LABEL.error {
+ color: red;
+}
