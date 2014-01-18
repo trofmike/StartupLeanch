@@ -16,7 +16,15 @@ if(is_uploaded_file ( $_FILES['file']['tmp_name'] ))
 									$u->AddParameter("FileName","/".$uploadfile);
 									$u->AddParameter("OriginalFile",$_FILES['file']['name']);
 									$u->Run();
-								}	 
+								}
+							else
+							{
+								echo "upload failed";
+							}
 	}	
+	else
+	{
+		echo "file was not uploaded";
+	}
 
 ?>
