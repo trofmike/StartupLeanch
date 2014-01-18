@@ -244,6 +244,19 @@ A.dashlink:hover {
  text-decoration: none;
 }
 
-#leanchpic {
- max-width:900px;
-}
+/* Customize container */
+@media (min-width: 1100px) 
+	{
+		#leanchpic {
+		 max-width:900px;
+		}
+	}
+	
+/* Customize container */
+@media (max-width: 1100px) 
+	{
+		#leanchpic {
+		 max-width:750px;
+		}
+	}
+	

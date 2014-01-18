@@ -113,10 +113,15 @@ Templating::SetMasterPage("templates/main.php");
 		<?=nl2br($leanch['Description'])?>
 		</div>		
 	 </div>
-	</div>
+	</div>	
 	<div class="leanchpic">
-		<div class="row">
-			<img src="<?=$leanch['Picture']?>" id="leanchpic">
+		<div class="row text-center">
+				<!--<div style="width: 100%; padding-top: 30px; padding-bottom: 30px; font-size: 16pt;">
+					<a class="pointer dashlink" onclick="$('#spoiler').hide(); $('#review').css('visibility','');"><strong>LeanЧевать!</strong></a>
+				</div>-->
+		
+			<img src="<?=$leanch['Picture']?>" id="leanchpic" style=" box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(180, 180, 180, 0.6);">
+			
 		</div>
 	</div>
 	<div class="leanchcomment">
@@ -144,8 +149,8 @@ Templating::SetMasterPage("templates/main.php");
 				</div>				
 				<? } ?>
 				<div class="row leanchcommentline">
-				<div class="col-sm-12 text-center" id="spoiler">
-					<a class="pointer dashlink" onclick="$('#spoiler').css('visibility','hidden'); $('#review').css('visibility','');"><strong>Посмотреть комментарий</strong></a>
+				<div class="col-sm-12 text-center" id="spoiler" style="position: absolute;">
+					<a class="pointer dashlink" onclick="$('#spoiler').hide(); $('#review').css('visibility','');"><strong>Посмотреть комментарий</strong></a>
 				</div>
 					<div class="col-sm-12" id="review" style="visibility: hidden;">
 				<p><?=nl2br($leanch['Review'])?></p>
