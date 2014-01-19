@@ -115,12 +115,12 @@ Templating::SetMasterPage("templates/main.php");
 	 </div>
 	</div>	
 	<div class="leanchpic">
-		<div class="row text-center">
+		<div class="row text-left">
 				<!--<div style="width: 100%; padding-top: 30px; padding-bottom: 30px; font-size: 16pt;">
 					<a class="pointer dashlink" onclick="$('#spoiler').hide(); $('#review').css('visibility','');"><strong>LeanЧевать!</strong></a>
 				</div>-->
 		
-			<img src="<?=$leanch['Picture']?>" id="leanchpic" style=" box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(180, 180, 180, 0.6);">
+			<img src="<?=$leanch['Picture']?>" id="leanchpic">
 			
 		</div>
 	</div>
@@ -163,30 +163,16 @@ Templating::SetMasterPage("templates/main.php");
 	</div>
  </div>
  <div class="col-md-2">
-	<table width=100% class="navigate">
-	<!--<tr><td><img src="/img3/up.gif"></td></tr>-->
+	<table width=150 class="navigate" align=right>
 	<?
 		for($i=$navindex; $i<$navindex + 5; $i++)
 			{
 			echo "
-				<tr class=\"navigate-preview\"><td><a href=\"/".$nav[$i]["Date"]."/\"><img src=\"".$nav[$i]["SmallPicture"]."\" border=0></a></td></tr>
-	<tr class=\"navigate-preview-caption\"><td><a href=\"/".$nav[$i]["Date"]."/\">".$nav[$i]["ProjectName"]."</a></td></tr>
+				<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/".$nav[$i]["Date"]."/\"><img src=\"".$nav[$i]["SmallPicture"]."\" border=0></a></td></tr>
+	<tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/".$nav[$i]["Date"]."/\">".$nav[$i]["ProjectName"]."</a></td></tr>
 			";
 			}
 	?>
-	<!--
-	<tr class="navigate-preview"><td><img src="/leanches/1_t.jpg"></td></tr>
-	<tr class="navigate-preview-caption"><td>Vokzal.com</td></tr>
-	<tr class="navigate-preview"><td><img src="/leanches/2_t.jpg"></td></tr>
-	<tr class="navigate-preview-caption"><td>Fivecards</td></tr>
-	<tr class="navigate-preview"><td><img src="/leanches/3_t.jpg"></td></tr>
-	<tr class="navigate-preview-caption"><td>Bustourpro</td></tr>
-	<tr class="navigate-preview"><td><img src="/leanches/4_t.jpg"></td></tr>
-	<tr class="navigate-preview-caption"><td>HRValue</td></tr>
-	<tr class="navigate-preview"><td><img src="/leanches/5_t.jpg"></td></tr>
-	<tr class="navigate-preview"><td>RoadAR</td></tr>
-	
-	<tr><td style="padding-top: 10px;"><img src="/img3/down.gif"></td></tr>-->
 	</table>
  </div>
  </div>

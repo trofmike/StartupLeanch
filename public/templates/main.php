@@ -20,7 +20,13 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:image" content="http://startupleanch.ru/img3/logo.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+
 <title>StartupLeanch <?=$title?></title>
+
 	<!-- Bootstrap -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/style.css" rel="stylesheet" type="text/css" />
@@ -44,12 +50,18 @@ session_start();
 			<h1>Публичная порка стартап-проектов.</h1>			
 			</div>
 			<? if($title!=" - Заявка на рецензию") { ?>
-			<div class="col-sm-1">
-			<a href="/add.php" class="btn btn-success"><strong>Прием заявок!</strong></a>
+			<div class="col-sm-3 text-right">
+			<a href="/add.php" class="btn btn-green addleanch"><strong>Прием заявок!</strong></a>
 			</div>			
 			<? } ?>
 		</div>
 		<div class="row subheader">
+			<div class="col-sm-6 text-left subheader-borders">
+				<img src="/img3/header_line_l.gif">
+			</div>
+			<div class="col-sm-6 text-right subheader-borders">
+				<!--<img src="/img3/header_line_r.gif">-->
+			</div>
 		</div>
 	</div>
 </div>
