@@ -143,6 +143,7 @@ TD.datetext {
 
 .footer {
  margin-top: 30px;
+ padding-bottom: 30px;
  background: url('/img3/delimiter.gif');
  background-repeat: repeat-x;
  padding-top: 10px;

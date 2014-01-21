@@ -20,10 +20,14 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:image" content="http://startupleanch.ru/img3/logo.png">
-<meta property="og:image:type" content="image/png">
+<meta property="og:url" content="http://www.startupleanch.ru/">
+<meta property="og:title" content="StartupLeanch - Публичная порка стартап-проектов">
+<meta property="og:image" content="http://startupleanch.ru/img3/big_logo.jpg">
+<meta property="og:type" content="website">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1024">
+<meta property="og:description" content="Хочешь узнать мнение экспертов о своём проекте? Хочешь посмотреть как линчуют другие стартапы? Заходи!">
 
 <title>StartupLeanch <?=$title?></title>
 
@@ -69,10 +73,23 @@ session_start();
 <div class="container">	
 <div class="footer">
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-3">
 			&copy; <?=date("Y")?> StartupLeanch
 		</div>
-		<div class="col-sm-6 text-right">
+		<div class="col-sm-6">
+		<!-- FB LIKE -->
+			<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=539712172803316";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>		
+			<div class="fb-like" data-href="http://www.startupleanch.ru/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+		<!-- / FB LIKE -->
+		</div>
+		<div class="col-sm-3 text-right">
 			mail@startupleanch.ru
 		</div>
 	</div>
