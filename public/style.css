@@ -129,6 +129,18 @@ TD.datetext {
  color: #888888;
 }
 
+.leanchcommentbubble {
+	left: 100%; 
+	margin-left: -400px; 
+	width: 400px; 
+	position: absolute; 
+	background-color: white; 
+	padding: 10px; 
+	background-color: #F7F5DC;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(180, 180, 180, 0.6);
+	font-size: 12px;
+}
+
 .footer {
  margin-top: 30px;
  background: url('/img3/delimiter.gif');
@@ -275,6 +287,10 @@ A.dashlink:hover {
  text-decoration: none;
 }
 
+#leanchpic {
+ margin-top: 20px;
+}
+
 /* Customize container */
 @media (min-width: 1100px) 
 	{
@@ -291,3 +307,52 @@ A.dashlink:hover {
 		}
 	}
 	
+	
+DIV.link-original {
+	padding-left: 40px;
+}
+
+.link-original, .link-leanch {
+ 	font-size: 12pt;
+}
+
+A.link-original-active {
+	color: black;
+	cursor: text;
+	background-color: #F0F0F0;
+}
+
+A.link-original-unactive {
+	cursor: hand; cursor: pointer;
+	qcolor: #2A6496;
+
+	border-bottom: 1px dashed #999;
+	display: inline;
+	color:  #0086C8;
+	
+}
+
+A.link-original-unactive:hover,
+A.link-original-active:hover,
+A.link-leanch-unactive:hover,
+A.link-leanch-active:hover
+ {
+	text-decoration: none;
+}
+
+A.link-leanch-active {
+	color: black;
+	cursor: text;
+	background-color: #F0F0F0;	
+}
+
+A.link-leanch-unactive {
+	cursor: hand; cursor: pointer;
+	color:  #009900;
+	border-bottom: 1px dashed #999;
+	font-weight: bold;
+}
+
+A.link-leanch-unactive:hover {
+	text-decoration: none;
+}

@@ -114,51 +114,42 @@ Templating::SetMasterPage("templates/main.php");
 		</div>		
 	 </div>
 	</div>	
-	<div class="leanchpic">
-		<div class="row text-left">
-				<!--<div style="width: 100%; padding-top: 30px; padding-bottom: 30px; font-size: 16pt;">
-					<a class="pointer dashlink" onclick="$('#spoiler').hide(); $('#review').css('visibility','');"><strong>LeanЧевать!</strong></a>
-				</div>-->
-		
-			<img src="<?=$leanch['Picture']?>" id="leanchpic">
-			
-		</div>
+	<div class="row">
+		<script language=JavaScript>
+			function showOriginal()
+				{
+					$('#link-original').removeClass('link-original-unactive').addClass('link-original-active');
+					$('#link-leanch').removeClass('link-leanch-active').addClass('link-leanch-unactive');
+					$('.leanchcommentbubble').hide();
+				}
+				
+			function showLeanch()
+				{
+					$('#link-original').removeClass('link-original-active').addClass('link-original-unactive');
+					$('#link-leanch').removeClass('link-leanch-unactive').addClass('link-leanch-active');				
+					$('.leanchcommentbubble').show();
+				}
+		</script>
+		<div class="col-sm-2 link-original"><a class="link-original-active" id="link-original" onclick="showOriginal();">Оригинал</a></div>
+		<div class="col-sm-2 link-leanch" ><a class="link-leanch-unactive" id="link-leanch" onclick="showLeanch();">LeanЧевать!</a></div>
 	</div>
-	<div class="leanchcomment">
-		<div class="row">
-			<div class="col-sm-2" style="padding-top: 15px;">
+	<div class="leanchpic">
+<div class="leanchcommentbubble" style="display: none;">
+			<table align=right>
+				<tr><td valign=top align=left>
 				<img src="<?=$leanch['Avatar']?>">
+				<br/>
+				<strong>Рецензировал:</strong><br/>
+				<?=$leanch['ReviewerName']?>
+				</td></tr>
+			</table>
+			<div style="clear: both;"></div>			
+			<div style="width: 100%; margin-top: 10px;">
+			<p><?=nl2br($leanch['Review'])?></p>
 			</div>
-			<div class="col-sm-8">
-				<div class="row leanchcommentline">
-					<div class="col-sm-3">
-					Рецензировал:
-					</div>
-					<div class="col-sm-7">
-					<strong><?=$leanch['ReviewerName']?></strong>
-					</div>
-				</div>
-				<? if($leanch['Verdict']!="") { ?>
-				<div class="row leanchcommentline">
-					<div class="col-sm-3">
-					Вердикт:
-					</div>
-					<div class="col-sm-7">
-					<?=$leanch['Verdict']?>
-					</div>
-				</div>				
-				<? } ?>
-				<div class="row leanchcommentline">
-				<div class="col-sm-12 text-center" id="spoiler" style="position: absolute;">
-					<a class="pointer dashlink" onclick="$('#spoiler').hide(); $('#review').css('visibility','');"><strong>Посмотреть комментарий</strong></a>
-				</div>
-					<div class="col-sm-12" id="review" style="visibility: hidden;">
-				<p><?=nl2br($leanch['Review'])?></p>
-					</div>
-				</div>	
-				<div class="row leanchcommentline">				
-				</div>
-			</div>
+	</div>	
+		<div class="row text-left">		
+			<img src="<?=$leanch['Picture']?>" id="leanchpic">			
 		</div>
 	</div>
  </div>
