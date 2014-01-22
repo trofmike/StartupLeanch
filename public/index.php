@@ -34,34 +34,71 @@ $m = $months[date("n",$leanch['uDate'])];
 
 $id = $leanch['LeanchID'];
 
-$previd = $id - 2;
-$nextid = $id + 5;
+/// NEED TO REVIEW
+//// дальше идёт длинный код для заполнения правой таблицы навигации предыдущими и последующими записями
+//// + здесь же высчитываются даты предыдущего и последующего линча
 
-$res = mysql_query("SELECT *, UNIX_TIMESTAMP(Date) AS uDate FROM leanches 
+$res1 = mysql_query("SELECT *, UNIX_TIMESTAMP(Date) AS uDate FROM leanches 
 	INNER JOIN reviewers ON leanches.ReviewerID = reviewers.ReviewerID
-	WHERE LeanchID <=".$nextid." AND Date <= DATE(NOW()) ORDER BY LeanchID DESC LIMIT 10");
+	WHERE Date <='".$date."' AND Date <= DATE(NOW()) ORDER BY Date DESC LIMIT 5");
 	
+$res2 = mysql_query("SELECT *, UNIX_TIMESTAMP(Date) AS uDate FROM leanches 
+	INNER JOIN reviewers ON leanches.ReviewerID = reviewers.ReviewerID
+	WHERE Date >'".$date."' AND Date <= DATE(NOW()) ORDER BY Date ASC LIMIT 5");
+
+$n1 = mysql_num_rows($res1);
+$n2 = mysql_num_rows($res2);
+
 $nav = array();
 $prevdate = "";
 $nextdate = "";
 
-$navindex = 0;
-$i=0;
-
-while($row = mysql_fetch_array($res))
+if($n2 > 1)
 	{
-		if($row['LeanchID']<$id && $prevdate == "")
-			$prevdate = $row['Date'];
-		if( $row['LeanchID']>$id)
-			$nextdate = $row['Date'];
-		if( $row['LeanchID']==$id && $i > 2)
-			$navindex = $i - 2;
-		$nav[] = $row;
-		$i++;
+	if($n1 > 2)
+		$n1 = 3;
 	}
+	else
+		$n1 = 5-$n2;
 
-	if($i - $navindex < 6)
-		$navindex = $i - 5;
+for($i=$n1;$i>0;$i--)
+	{
+		$row = mysql_fetch_array($res1);
+		$nav[5-$i]=$row;
+	}
+	
+for($i=0;$i<5-$n1;$i++)
+	{
+		$row = mysql_fetch_array($res2);
+		$nav[4-$i-$n1]=$row;
+	}
+	
+switch($n1)
+	{
+		case 1:
+				$nextdate = $nav[3]['Date'];	
+			break;
+		case 2:
+				$prevdate = $nav[4]['Date'];
+				$nextdate = $nav[2]['Date'];		
+			break;
+		default:
+				switch($n2)
+					{
+						case 0:
+							$prevdate = $nav[1]['Date'];
+							break;
+						case 1:
+							$prevdate = $nav[2]['Date'];
+							$nextdate = $nav[0]['Date'];		
+							break;
+						default:
+							$prevdate = $nav[$n1]['Date'];				
+							$nextdate = $nav[$n1-2]['Date'];			
+							break;
+					}
+			break;
+	}
 
 $title = "Публичная порка стартап-проектов";
 
@@ -73,9 +110,10 @@ Templating::SetMasterPage("templates/main.php");
  <div class="col-md-10">
 	<div class="row leanchtitle">
 		<div class="col-sm-2">			
-				<table class="dateselector"><tr><td width=19><? if($prevdate!="") { ?><a href="/<?=$prevdate?>/"><img src="/img2/dselector_left.png" border=0></a><? } ?></td>
-				<td class="datetext" valign=middle align=center><?=$d?></td><td width=19><? if($nextdate!="") { ?><a href="/<?=$nextdate?>/"><img src="/img2/dselector_right.png" border=0></a><? } ?></td></tr>
-				<tr><td colspan=3><?=$m?></td></tr>
+				<table class="dateselector"><tr><td width=19><? if($prevdate!="") { ?><a href="/<?=$prevdate?>/"><img src="/img2/dselector_left.png" border=0></a><? } else { ?><img src="/img2/dselector_left_d.png" border=0><? } ?></td>
+				<td class="datetext" valign=middle align=left><?=$d?></td><td width=19><? if($nextdate!="") { ?><a href="/<?=$nextdate?>/"><img src="/img2/dselector_right.png" border=0></a><? } else { ?><img src="/img2/dselector_right_d.png" border=0><? } ?></td></tr>
+				<tr><td></td>
+				<td class="leanchmonth" align=left colspan=2><?=$m?></td></tr>
 				</table>			
 		</div>
 		<div class="col-sm-8">
@@ -115,6 +153,15 @@ Templating::SetMasterPage("templates/main.php");
 	 </div>
 	</div>	
 	<div class="row">
+	<div class="col-sm-12">
+		<table width=100%>
+		<tr><td rowspan=3 width=160>
+			<img src="<?=$leanch['Avatar']?>">
+		</td>
+		<td class="reviewer-title">Рецензировал:</td>
+		</tr>
+		<tr><td class="reviewer-name"><?=$leanch['ReviewerName']?></td></tr>
+		<tr><td valign=bottom>
 		<script language=JavaScript>
 			function showOriginal()
 				{
@@ -130,21 +177,14 @@ Templating::SetMasterPage("templates/main.php");
 					$('.leanchcommentbubble').show();
 				}
 		</script>
-		<div class="col-sm-2 link-original"><a class="link-original-active" id="link-original" onclick="showOriginal();">Оригинал</a></div>
-		<div class="col-sm-2 link-leanch" ><a class="link-leanch-unactive" id="link-leanch" onclick="showLeanch();">LeanЧевать!</a></div>
+		<a class="link-original-active" id="link-original" onclick="showOriginal();">оригинал</a>
+		<a class="link-leanch-unactive" id="link-leanch" onclick="showLeanch();">показать рецензию</a>
+		</td></tr></table>
+	</div>
 	</div>
 	<div class="leanchpic">
-<div class="leanchcommentbubble" style="display: none;">
-			<table align=right>
-				<tr><td valign=top align=left>
-				<img src="<?=$leanch['Avatar']?>">
-				<br/>
-				<strong>Рецензировал:</strong><br/>
-				<?=$leanch['ReviewerName']?>
-				</td></tr>
-			</table>
-			<div style="clear: both;"></div>			
-			<div style="width: 100%; margin-top: 10px;">
+<div class="leanchcommentbubble" style="display: none;">			
+			<div style="width: 100%;">
 			<p><?=nl2br($leanch['Review'])?></p>
 			</div>
 	</div>	
@@ -154,9 +194,57 @@ Templating::SetMasterPage("templates/main.php");
 	</div>
  </div>
  <div class="col-md-2">
+	<script language=JavaScript>
+		function navUp()
+			{
+				if(!$('.navup').hasClass('nav-active'))
+					return;
+					
+				var d = $('.navigate A').first().attr('href');
+				$.post('/ajax_get_preview.php', {date: d, order: 'up'}, function(data) {
+						if(data)
+							{
+								var row = JSON.parse(data);
+								$('.navigate .navigate-preview').last().remove();
+								$('.navigate .navigate-preview-caption').last().remove();
+								$('.navigate TR:first').after('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
+								if(row['n']!=2)
+									$('.navup').removeClass('nav-active').addClass('nav-unactive');
+								if(!$('.navdown').hasClass('nav-active'))
+									$('.navdown').removeClass('nav-unactive').addClass('nav-active');
+									
+								//debugger;
+							}
+					});
+			}
+			
+		function navDown()
+			{
+				if(!$('.navdown').hasClass('nav-active'))
+					return;
+					
+				var d = $('.navigate A').last().attr('href');
+				$.post('/ajax_get_preview.php', {date: d, order: 'down'}, function(data) {
+						if(data)
+							{
+								var row = JSON.parse(data);
+								$('.navigate .navigate-preview').first().remove();
+								$('.navigate .navigate-preview-caption').first().remove();
+								$('.navigate TR:last').before('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
+								if(row['n']!=2)
+									$('.navdown').removeClass('nav-active').addClass('nav-unactive');
+								if(!$('.navup').hasClass('nav-active'))
+									$('.navup').removeClass('nav-unactive').addClass('nav-active');
+								//debugger;
+							}
+					});
+			}			
+	</script>
 	<table width=150 class="navigate" align=right>
+	<tr><td><img src="/img3/up.gif" onclick="navUp();" class="navup <?=$n2>0?"nav-active":"nav-unactive"?>"></td></tr>
 	<?
-		for($i=$navindex; $i<$navindex + 5; $i++)
+		//for($i=$navindex; $i<$navindex + 5; $i++)
+		for($i=0; $i<5; $i++)
 			{
 			echo "
 				<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/".$nav[$i]["Date"]."/\"><img src=\"".$nav[$i]["SmallPicture"]."\" border=0></a></td></tr>
@@ -164,6 +252,7 @@ Templating::SetMasterPage("templates/main.php");
 			";
 			}
 	?>
+	<tr><td style="padding-top: 10px;"><img src="/img3/down.gif" onclick="navDown();" class="navdown <?=$n1>1?"nav-active":"nav-unactive"?>"></td></tr>
 	</table>
  </div>
  </div>

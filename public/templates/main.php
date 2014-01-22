@@ -41,7 +41,8 @@ session_start();
 	<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="/js/jquery.ocupload-1.1.2.js"></script>
 	<script src="/js/jquery.validate_ru.js"></script>
-	
+	<!-- Google fonts -->
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div class="header">
@@ -55,7 +56,7 @@ session_start();
 			</div>
 			<? if($title!=" - Заявка на рецензию") { ?>
 			<div class="col-sm-3 text-right">
-			<a href="/add.php" class="btn btn-green addleanch"><strong>Прием заявок!</strong></a>
+			<a href="/add.php" class="btn btn-green addleanch">ПРИЕМ ЗАЯВОК!</a>
 			</div>			
 			<? } ?>
 		</div>

@@ -7,6 +7,7 @@
 .container {
  padding-left: 0px !important;
  padding-right: 0px !important;
+ 
 }
 
 @font-face {
@@ -24,8 +25,10 @@
  src: url('fonts/HelveticaNeueCyr-Bold.otf');
 }
 
-BODY {
- font-family: Arial;
+
+
+BODY { 
+ font-family: 'PT Sans', sans-serif;
  font-size: 14px;
 }
 
@@ -37,6 +40,7 @@ BODY {
 	font-size: 18pt;
 	font-weight: bold;
 	margin-top: 12px;
+	font-family: 'PT Sans', sans-serif;
 }
 
 .header A {
@@ -59,21 +63,27 @@ BODY {
  }
 
 TABLE.dateselector {
- width: 100px;
+ width: 80px;
+ margin-top: 3px;
 }
 
 TABLE.dateselector TD {
  qborder: 1px solid #DDDDDD;
  border: none;
- text-align: center;
+ line-height: 1.0; 
 }
 
 TD.datetext {
  qbackground-color: #F2F2F2;
  color: #FE6E48;
- font-family: HelveticaNeueCyr-Bold;
- font-size: 30px;
- 
+ font-family: HelveticaNeueCyr-Bold; 
+ font-size: 30px; 
+}
+
+TD.leanchmonth {
+ font-family: HelveticaNeueCyr;
+ font-size: 11px;
+ text-align: left;
 }
 
 .leanchinfo {
@@ -88,9 +98,10 @@ TD.datetext {
 }
 
 .leanchtitle H2 {
-	font-family: Sans;
+	font-family: 'PT Sans', sans-serif;
 	font-size: 24pt;
 	font-weight: bold;
+	margin-top: 0px;
 }
 
 .leanchinfoitem {
@@ -130,15 +141,15 @@ TD.datetext {
 }
 
 .leanchcommentbubble {
-	left: 100%; 
-	margin-left: -400px; 
-	width: 400px; 
+	left: 50%; 
+	margin-left: -300px; 
+	margin-top: 50px;
+	width: 600px; 
 	position: absolute; 
-	background-color: white; 
-	padding: 10px; 
-	background-color: #F7F5DC;
+	padding: 20px; 
+	background-color: #fbf0d7;
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(180, 180, 180, 0.6);
-	font-size: 12px;
+	font-size: 11pt;
 }
 
 .footer {
@@ -250,6 +261,7 @@ A.addleanch {
  padding-top: 10px;
  font-size: 14px;
  font-family: Arial;
+ font-weight: 500;
 }
 
 TD.requesthint {
@@ -289,7 +301,7 @@ A.dashlink:hover {
 }
 
 #leanchpic {
- margin-top: 20px;
+ margin-top: 30px;
 }
 
 /* Customize container */
@@ -317,10 +329,15 @@ DIV.link-original {
  	font-size: 12pt;
 }
 
+#link-leanch {
+	margin-left: 20px;
+}
+
 A.link-original-active {
-	color: black;
 	cursor: text;
-	background-color: #F0F0F0;
+	background-color: #fe6e48;
+	color: white;
+	padding: 2px 10px 2px;
 }
 
 A.link-original-unactive {
@@ -342,18 +359,39 @@ A.link-leanch-active:hover
 }
 
 A.link-leanch-active {
-	color: black;
 	cursor: text;
-	background-color: #F0F0F0;	
+	background-color: #fe6e48;
+	color: white;
+	padding: 2px 10px 2px;
+	
 }
 
 A.link-leanch-unactive {
 	cursor: hand; cursor: pointer;
-	color:  #009900;
+	color:  #0086C8;
 	border-bottom: 1px dashed #999;
-	font-weight: bold;
 }
 
 A.link-leanch-unactive:hover {
 	text-decoration: none;
+}
+
+TD.reviewer-title {
+	color: #999999;
+	font-size: 11px;
+	line-height: 1.0;
+}
+
+TD.reviewer-name {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+IMG.nav-active {
+	cursor: hand; cursor: pointer;	
+}
+
+IMG.nav-unactive {
+	cursor: auto;
+	opacity: 0.3;
 }
