@@ -42,9 +42,8 @@ $smonths = array(-1 => 'n', '', 'янв', 'фев', 'мар', 'апр', 'мая'
 $resultstr = "<tr class=\"navigate-preview ".($result["Date"]==$currentdate?"navigate-current":"")."\">
 				<td width=2 valign=top class=\"navigate-pre\">".($result["Date"]==date("Y-m-d")?"<img src=\"/img3/date_pre2.gif\">":"")."</td>
 				<td valign=top width=40 class=\"navigate-date\"><span class=\"navigate-date-num\">".date("d",$result["uDate"])."</span><br><span class=\"navigate-date-mon\">".$smonths[date("n",$result["uDate"])]."</span></td>
-				<td width=130 align=left><a href=\"/".$result["Date"]."/\"><img width=108 src=\"".$result["SmallPicture"]."\" border=0></a></td></tr>
-	<tr class=\"navigate-preview-caption ".($result["Date"]==$currentdate?"navigate-current":"")."\"><td width=2 class=\"navigate-pre\"></td><td></td>
-	<td width=130 align=left valign=top><a href=\"/".$result["Date"]."/\">".$result["ProjectName"]."</a></td></tr>";
+				<td width=130 align=left><a href=\"/".$result["Date"]."/\"><img width=108 src=\"".$result["SmallPicture"]."\" border=0></a>
+				<div class=\"navigate-preview-caption\"><a href=\"/".$result["Date"]."/\">".$result["ProjectName"]."</a></div></td></tr>";
 $result['code']=$resultstr;
 //echo $resultstr;
 echo json_encode($result,  JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);

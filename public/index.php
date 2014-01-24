@@ -110,7 +110,7 @@ switch($n1)
 			break;
 	}
 
-$title = "Публичная порка стартап-проектов";
+$title = "Линч стартапов от экспертов по lean-технологиям";
 
 Templating::SetMasterPage("templates/main.php");
 
@@ -216,7 +216,7 @@ Templating::SetMasterPage("templates/main.php");
 							{
 								var row = JSON.parse(data);
 								$('.navigate .navigate-preview').last().remove();
-								$('.navigate .navigate-preview-caption').last().remove();
+								//$('.navigate .navigate-preview-caption').last().remove();
 								$('.navigate TR:first').after(row['code']);
 								//$('.navigate TR:first').after('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
 								if(row['n']!=2)
@@ -240,7 +240,7 @@ Templating::SetMasterPage("templates/main.php");
 							{
 								var row = JSON.parse(data);
 								$('.navigate .navigate-preview').first().remove();
-								$('.navigate .navigate-preview-caption').first().remove();
+								//$('.navigate .navigate-preview-caption').first().remove();
 								
 								$('.navigate TR:last').before(row['code']);
 								//$('.navigate TR:last').before('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
@@ -254,7 +254,7 @@ Templating::SetMasterPage("templates/main.php");
 			}			
 	</script>
 	<table width=162 class="navigate" align=right cellpadding=0>
-	<tr><td width=2></td><td colspan=2><img src="/img3/nav_up_<?=$n2>2?"":"in"?>active.gif" onclick="navUp();" class="navup <?=$n2>2?"nav-active":"nav-unactive"?>"></td></tr>
+	<tr><td width=2></td><td colspan=2 class="navup-td"><img src="/img3/nav_up_<?=$n2>2?"":"in"?>active.gif" onclick="navUp();" class="navup <?=$n2>2?"nav-active":"nav-unactive"?>"></td></tr>
 	<?
 		//for($i=$navindex; $i<$navindex + 5; $i++)
 		for($i=0; $i<5; $i++)
@@ -262,13 +262,13 @@ Templating::SetMasterPage("templates/main.php");
 			echo "<tr class=\"navigate-preview ".($nav[$i]["Date"]==$date?"navigate-current":"")."\">
 				<td width=2 valign=top class=\"navigate-pre\">".($nav[$i]["Date"]==date("Y-m-d")?"<img src=\"/img3/date_pre2.gif\">":"")."</td>
 				<td valign=top width=40 class=\"navigate-date\"><span class=\"navigate-date-num\">".date("d",$nav[$i]["uDate"])."</span><br><span class=\"navigate-date-mon\">".$smonths[date("n",$nav[$i]["uDate"])]."</span></td>
-				<td width=130 align=left><a href=\"/".$nav[$i]["Date"]."/\"><img width=108 src=\"".$nav[$i]["SmallPicture"]."\" border=0></a></td></tr>
-	<tr class=\"navigate-preview-caption ".($nav[$i]["Date"]==$date?"navigate-current":"")."\"><td width=2 class=\"navigate-pre\"></td><td></td>
-	<td width=130 align=left valign=top><a href=\"/".$nav[$i]["Date"]."/\">".$nav[$i]["ProjectName"]."</a></td></tr>
+				<td width=130 align=left><a href=\"/".$nav[$i]["Date"]."/\"><img width=108 src=\"".$nav[$i]["SmallPicture"]."\" border=0></a>
+				<div class=\"navigate-preview-caption\"><a href=\"/".$nav[$i]["Date"]."/\">".$nav[$i]["ProjectName"]."</a></div>
+				</td></tr>
 			";
 			}
 	?>
-	<tr><td width=2></td><td colspan=2><img src="/img3/nav_down_<?=$showdown==1?"":"in"?>active.gif" onclick="navDown();" class="navdown <?=$showdown==1?"nav-active":"nav-unactive"?>"></td></tr>
+	<tr><td width=2></td><td colspan=2 class="navdown-td"><img src="/img3/nav_down_<?=$showdown==1?"":"in"?>active.gif" onclick="navDown();" class="navdown <?=$showdown==1?"nav-active":"nav-unactive"?>"></td></tr>
 	</table>
  </div>
  </div>

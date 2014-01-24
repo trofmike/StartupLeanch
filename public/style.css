@@ -50,6 +50,7 @@ BODY {
 .subheader {
  margin-top: 20px;
  background: url('/img3/header_line2.png');
+ background-repeat: repeat-x;
  background-repeat: round;
  height: 10px;
  margin-left: 0px;
@@ -184,7 +185,12 @@ TR.navigate-preview-caption TD
 	padding-top: 10px;	
 }
 
-TR.navigate-current TD{
+.navigate-preview-caption{
+	height: 38px;
+	padding-top: 10px;	
+}
+
+TR.navigate-preview:hover TD{
 	background-color: #EEEEEE;
 }
 
@@ -428,6 +434,21 @@ IMG.nav-active {
 	cursor: hand; cursor: pointer;	
 }
 
+IMG.nav-active:hover {
+	cursor: hand; cursor: pointer;	
+	opacity: 0;
+}
+
 IMG.nav-unactive {
 	cursor: auto;
+}
+
+TD.navup-td:hover {
+	background: url('/img3/nav_up_hover.gif');
+	background-repeat: no-repeat;
+}
+
+TD.navdown-td:hover {
+	background: url('/img3/nav_down_hover.gif');
+	background-repeat: no-repeat;
 }
