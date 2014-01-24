@@ -113,8 +113,9 @@ TD.leanchmonth {
 }
 
 .leanchinfovalue{
-	background: url('/img3/delimiter2.gif'); 
-	background-repeat: repeat-x; 
+	qbackground: url('/img3/delimiter2.gif'); 
+	qbackground-repeat: repeat-x; 
+	border-bottom: 1px dotted #CCCCCC; 	
 	height: 32px;
 }
 
@@ -168,17 +169,53 @@ TABLE.navigate {
 
 TR.navigate-preview TD
 {
-	padding-top: 10px;
+	padding-top: 15px;
+	background-color: #F6F6F6;
+	border-top: 1px solid #E9EAEB;
 }
 
 TR.navigate-preview-caption TD
 {
-	background: url('/img3/delimiter.gif');
-	background-repeat: repeat-x;
-	background-position: center bottom;
-	height: 50px;
+	qbackground: url('/img3/delimiter.gif');
+	qbackground-repeat: repeat-x;
+	qbackground-position: center bottom;
+	background-color: #F6F6F6;	
+	height: 38px;
+	padding-top: 10px;	
 }
 
+TR.navigate-current TD{
+	background-color: #EEEEEE;
+}
+
+TR.navigate-preview TD.navigate-pre,
+TR.navigate-preview-caption  TD.navigate-pre {
+	background-color: white;
+	border-top: none;
+	padding-top: 16px;
+}
+
+TR.navigate-preview-caption   A {
+	color: #3376AF;
+	font-size: 13px;
+}
+
+TR.navigate-preview TD.navigate-date {
+	padding-left: 7px;
+}
+
+.navigate-date-num {
+	color: black;
+	font-size: 14px;
+	line-height: 0.8;
+	font-family: HelveticaNeueCyr-Bold;
+}
+
+.navigate-date-mon {
+	color: #999999;
+	font-size: 11px;
+	font-family: HelveticaNeueCyr-Roman	;
+}
 
 A.btn-blue {
   color: #ffffff;
@@ -393,5 +430,4 @@ IMG.nav-active {
 
 IMG.nav-unactive {
 	cursor: auto;
-	opacity: 0.3;
 }

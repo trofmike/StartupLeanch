@@ -6,10 +6,12 @@ require_once("engine/engine.php");
 
 $rdate = date_parse($_REQUEST['date']);
 
+
+
 $date = "";
 
 if($rdate["error_count"]==0 && intval($rdate["year"])>0 && intval($rdate["month"])>0 && intval($rdate["day"])>0)
-	$date = $rdate["year"]."-".$rdate["month"]."-".$rdate["day"];
+	$date = sprintf("%d-%02d-%02d",$rdate["year"],$rdate["month"],$rdate["day"]);
 
 if(strtotime($date)>time() && !isset($_REQUEST['superdate']))
 	{
@@ -28,6 +30,8 @@ $leanch = mysql_fetch_array($res);
 
 
 $months = array(-1 => 'n', '', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря');
+$smonths = array(-1 => 'n', '', 'янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек');
+
 
 $d = date("d",$leanch['uDate']);
 $m = $months[date("n",$leanch['uDate'])];
@@ -53,10 +57,16 @@ $nav = array();
 $prevdate = "";
 $nextdate = "";
 
+$showdown=0;
+if($n1>3)
+	$showdown=1;
+
 if($n2 > 1)
 	{
 	if($n1 > 2)
+		{
 		$n1 = 3;
+		}
 	}
 	else
 		$n1 = 5-$n2;
@@ -201,17 +211,18 @@ Templating::SetMasterPage("templates/main.php");
 					return;
 					
 				var d = $('.navigate A').first().attr('href');
-				$.post('/ajax_get_preview.php', {date: d, order: 'up'}, function(data) {
+				$.post('/ajax_get_preview.php', {date: d, currentdate: '<?=$date?>', order: 'up'}, function(data) {
 						if(data)
 							{
 								var row = JSON.parse(data);
 								$('.navigate .navigate-preview').last().remove();
 								$('.navigate .navigate-preview-caption').last().remove();
-								$('.navigate TR:first').after('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
+								$('.navigate TR:first').after(row['code']);
+								//$('.navigate TR:first').after('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
 								if(row['n']!=2)
-									$('.navup').removeClass('nav-active').addClass('nav-unactive');
+									$('.navup').removeClass('nav-active').addClass('nav-unactive').attr('src','/img3/nav_up_inactive.gif');;
 								if(!$('.navdown').hasClass('nav-active'))
-									$('.navdown').removeClass('nav-unactive').addClass('nav-active');
+									$('.navdown').removeClass('nav-unactive').addClass('nav-active').attr('src','/img3/nav_down_active.gif');;
 									
 								//debugger;
 							}
@@ -224,35 +235,40 @@ Templating::SetMasterPage("templates/main.php");
 					return;
 					
 				var d = $('.navigate A').last().attr('href');
-				$.post('/ajax_get_preview.php', {date: d, order: 'down'}, function(data) {
+				$.post('/ajax_get_preview.php', {date: d, currentdate: '<?=$date?>', order: 'down'}, function(data) {
 						if(data)
 							{
 								var row = JSON.parse(data);
 								$('.navigate .navigate-preview').first().remove();
 								$('.navigate .navigate-preview-caption').first().remove();
-								$('.navigate TR:last').before('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
+								
+								$('.navigate TR:last').before(row['code']);
+								//$('.navigate TR:last').before('<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/'+row['Date']+'/\"><img src=\"'+row['SmallPicture']+'\" border=0></a></td></tr><tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/'+row['Date']+'/\">'+row['ProjectName']+'</a></td></tr>');
 								if(row['n']!=2)
-									$('.navdown').removeClass('nav-active').addClass('nav-unactive');
+									$('.navdown').removeClass('nav-active').addClass('nav-unactive').attr('src','/img3/nav_down_inactive.gif');
 								if(!$('.navup').hasClass('nav-active'))
-									$('.navup').removeClass('nav-unactive').addClass('nav-active');
+									$('.navup').removeClass('nav-unactive').addClass('nav-active').attr('src','/img3/nav_up_active.gif');
 								//debugger;
 							}
 					});
 			}			
 	</script>
-	<table width=150 class="navigate" align=right>
-	<tr><td><img src="/img3/up.gif" onclick="navUp();" class="navup <?=$n2>0?"nav-active":"nav-unactive"?>"></td></tr>
+	<table width=162 class="navigate" align=right cellpadding=0>
+	<tr><td width=2></td><td colspan=2><img src="/img3/nav_up_<?=$n2>2?"":"in"?>active.gif" onclick="navUp();" class="navup <?=$n2>2?"nav-active":"nav-unactive"?>"></td></tr>
 	<?
 		//for($i=$navindex; $i<$navindex + 5; $i++)
 		for($i=0; $i<5; $i++)
 			{
-			echo "
-				<tr class=\"navigate-preview\"><td width=150 align=right><a href=\"/".$nav[$i]["Date"]."/\"><img src=\"".$nav[$i]["SmallPicture"]."\" border=0></a></td></tr>
-	<tr class=\"navigate-preview-caption\"><td width=150 align=left><a href=\"/".$nav[$i]["Date"]."/\">".$nav[$i]["ProjectName"]."</a></td></tr>
+			echo "<tr class=\"navigate-preview ".($nav[$i]["Date"]==$date?"navigate-current":"")."\">
+				<td width=2 valign=top class=\"navigate-pre\">".($nav[$i]["Date"]==date("Y-m-d")?"<img src=\"/img3/date_pre2.gif\">":"")."</td>
+				<td valign=top width=40 class=\"navigate-date\"><span class=\"navigate-date-num\">".date("d",$nav[$i]["uDate"])."</span><br><span class=\"navigate-date-mon\">".$smonths[date("n",$nav[$i]["uDate"])]."</span></td>
+				<td width=130 align=left><a href=\"/".$nav[$i]["Date"]."/\"><img width=108 src=\"".$nav[$i]["SmallPicture"]."\" border=0></a></td></tr>
+	<tr class=\"navigate-preview-caption ".($nav[$i]["Date"]==$date?"navigate-current":"")."\"><td width=2 class=\"navigate-pre\"></td><td></td>
+	<td width=130 align=left valign=top><a href=\"/".$nav[$i]["Date"]."/\">".$nav[$i]["ProjectName"]."</a></td></tr>
 			";
 			}
 	?>
-	<tr><td style="padding-top: 10px;"><img src="/img3/down.gif" onclick="navDown();" class="navdown <?=$n1>1?"nav-active":"nav-unactive"?>"></td></tr>
+	<tr><td width=2></td><td colspan=2><img src="/img3/nav_down_<?=$showdown==1?"":"in"?>active.gif" onclick="navDown();" class="navdown <?=$showdown==1?"nav-active":"nav-unactive"?>"></td></tr>
 	</table>
  </div>
  </div>
