@@ -52,7 +52,7 @@ session_start();
 			<a href="/"><img src="/img3/logo.png" border=0></a>
 			</div>
 			<div class="col-sm-7 text-center">
-			<h1>Публичная порка стартап-проектов.</h1>			
+			<h1>Линч стартапов от экспертов по lean-технологиям</h1>			
 			</div>
 			<? if($title!=" - Заявка на рецензию") { ?>
 			<div class="col-sm-3 text-right">
@@ -78,8 +78,17 @@ session_start();
 			&copy; <?=date("Y")?> StartupLeanch
 		</div>
 		<div class="col-sm-6">
+			<!-- yandex share -->
+			<script type="text/javascript" src="//yandex.st/share/share.js"
+			charset="utf-8"></script>
+			<div class="yashare-auto-init" data-yashareL10n="ru"
+			 data-yashareQuickServices="yaru,vkontakte,facebook,twitter" data-yashareTheme="counter"
+
+			></div> 
+
+
 		<!-- FB LIKE -->
-			<div id="fb-root"></div>
+			<!-- <div id="fb-root"></div>
 			<script>(function(d, s, id) {
 			  var js, fjs = d.getElementsByTagName(s)[0];
 			  if (d.getElementById(id)) return;
@@ -87,7 +96,7 @@ session_start();
 			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=539712172803316";
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));</script>		
-			<div class="fb-like" data-href="http://www.startupleanch.ru/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+			<div class="fb-like" data-href="http://www.startupleanch.ru/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
 		<!-- / FB LIKE -->
 		</div>
 		<div class="col-sm-3 text-right">
