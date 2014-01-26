@@ -49,9 +49,8 @@ BODY {
 
 .subheader {
  margin-top: 20px;
- background: url('/img3/header_line2.png');
+ background: url('/img3/header_line3_1.gif');
  background-repeat: repeat-x;
- background-repeat: round;
  height: 10px;
  margin-left: 0px;
  margin-right: 0px;
@@ -380,7 +379,7 @@ A.link-original-active {
 	cursor: text;
 	background-color: #fe6e48;
 	color: white;
-	padding: 2px 10px 2px;
+	padding: 0px 10px 3px;	
 }
 
 A.link-original-unactive {
@@ -404,9 +403,9 @@ A.link-leanch-active:hover
 A.link-leanch-active {
 	cursor: text;
 	background-color: #fe6e48;
-	color: white;
-	padding: 2px 10px 2px;
-	
+	color: white;	
+	padding: 0px 10px 3px;	
+
 }
 
 A.link-leanch-unactive {

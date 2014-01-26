@@ -28,9 +28,11 @@ $res = mysql_query("SELECT *, UNIX_TIMESTAMP(Date) AS uDate FROM leanches
 	WHERE Date <= '".$date."' ORDER BY LeanchID DESC LIMIT 1");
 $leanch = mysql_fetch_array($res);
 
+$date = date("Y-m-d",$leanch['uDate']);
 
 $months = array(-1 => 'n', '', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря');
 $smonths = array(-1 => 'n', '', 'янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек');
+
 
 
 $d = date("d",$leanch['uDate']);
@@ -260,7 +262,7 @@ Templating::SetMasterPage("templates/main.php");
 		for($i=0; $i<5; $i++)
 			{
 			echo "<tr class=\"navigate-preview ".($nav[$i]["Date"]==$date?"navigate-current":"")."\">
-				<td width=2 valign=top class=\"navigate-pre\">".($nav[$i]["Date"]==date("Y-m-d")?"<img src=\"/img3/date_pre2.gif\">":"")."</td>
+				<td width=2 valign=top class=\"navigate-pre\">".($nav[$i]["Date"]==$date?"<img src=\"/img3/date_pre2.gif\">":"")."</td>
 				<td valign=top width=40 class=\"navigate-date\"><span class=\"navigate-date-num\">".date("d",$nav[$i]["uDate"])."</span><br><span class=\"navigate-date-mon\">".$smonths[date("n",$nav[$i]["uDate"])]."</span></td>
 				<td width=130 align=left><a href=\"/".$nav[$i]["Date"]."/\"><img width=108 src=\"".$nav[$i]["SmallPicture"]."\" border=0></a>
 				<div class=\"navigate-preview-caption\"><a href=\"/".$nav[$i]["Date"]."/\">".$nav[$i]["ProjectName"]."</a></div>

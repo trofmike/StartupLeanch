@@ -40,7 +40,7 @@ $result["n"] = $n;
 
 $smonths = array(-1 => 'n', '', 'янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек');
 $resultstr = "<tr class=\"navigate-preview ".($result["Date"]==$currentdate?"navigate-current":"")."\">
-				<td width=2 valign=top class=\"navigate-pre\">".($result["Date"]==date("Y-m-d")?"<img src=\"/img3/date_pre2.gif\">":"")."</td>
+				<td width=2 valign=top class=\"navigate-pre\">".($result["Date"]==$currentdate?"<img src=\"/img3/date_pre2.gif\">":"")."</td>
 				<td valign=top width=40 class=\"navigate-date\"><span class=\"navigate-date-num\">".date("d",$result["uDate"])."</span><br><span class=\"navigate-date-mon\">".$smonths[date("n",$result["uDate"])]."</span></td>
 				<td width=130 align=left><a href=\"/".$result["Date"]."/\"><img width=108 src=\"".$result["SmallPicture"]."\" border=0></a>
 				<div class=\"navigate-preview-caption\"><a href=\"/".$result["Date"]."/\">".$result["ProjectName"]."</a></div></td></tr>";

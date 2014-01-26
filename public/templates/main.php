@@ -30,7 +30,7 @@ session_start();
 <meta property="og:description" content="Хочешь узнать мнение экспертов о своём проекте? Хочешь посмотреть как линчуют другие стартапы? Заходи!">
 
 <title>StartupLeanch <?=$title?></title>
-
+	<link rel="shortcut icon" href="/favicon.gif" type="image/gif">
 	<!-- Bootstrap -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/style.css" rel="stylesheet" type="text/css" />
@@ -48,10 +48,10 @@ session_start();
 <div class="header">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-2">
+			<div class="col-sm-3">
 			<a href="/"><img src="/img3/logo.png" border=0></a>
 			</div>
-			<div class="col-sm-7 text-center">
+			<div class="col-sm-6 text-center">
 			<h1>Линч стартапов от экспертов по lean-технологиям</h1>			
 			</div>
 			<? if($title!=" - Заявка на рецензию") { ?>
