@@ -22,10 +22,12 @@ if($date=="")
 	{
 	$date = date("Y-m-d");	
 	}
+	
+//echo $date;
 
 $res = mysql_query("SELECT *, UNIX_TIMESTAMP(Date) AS uDate FROM leanches 
 	INNER JOIN reviewers ON leanches.ReviewerID = reviewers.ReviewerID
-	WHERE Date <= '".$date."' ORDER BY LeanchID DESC LIMIT 1");
+	WHERE Date <= '".$date."' ORDER BY Date DESC LIMIT 1");
 $leanch = mysql_fetch_array($res);
 
 $date = date("Y-m-d",$leanch['uDate']);

@@ -21,7 +21,7 @@ session_start();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:url" content="http://www.startupleanch.ru/">
-<meta property="og:title" content="StartupLeanch - Линч стартапов от экспертов по lean-технологиям">
+<meta property="og:title" content="StartupLeanch - Линч стартапов от экспертов по Lean Startup">
 <meta property="og:image" content="http://startupleanch.ru/img3/big_logo.jpg">
 <meta property="og:type" content="website">
 <meta property="og:image:type" content="image/jpeg">
@@ -52,7 +52,7 @@ session_start();
 			<a href="/"><img src="/img3/logo.png" border=0></a>
 			</div>
 			<div class="col-sm-6 text-center">
-			<h1>Линч стартапов от экспертов по lean-технологиям</h1>			
+			<h1>Линч стартапов от экспертов по Lean Startup технологиям</h1>			
 			</div>
 			<? if($title!=" - Заявка на рецензию") { ?>
 			<div class="col-sm-3 text-right">
